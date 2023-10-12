@@ -2,3 +2,8 @@
 SELECT "track", CASE WHEN finished = 'true' THEN 'status = 2' WHEN cancelled = 'true' THEN 'status = 1' WHEN "inDelivery" = 'true' THEN 'status = 1' ELSE 'status = 0' END FROM "Orders";
 
 SELECT c.login, COUNT(o.id) FROM "Couriers" AS c JOIN "Orders" AS o ON c.id=o."courierId" WHERE o."inDelivery"=true GROUP BY c.login;
+Без привязки к столбцу
+
+
+SELECT c.login, COUNT(o.id) AS "deliveryCount" FROM "Couriers" AS LEFT JOIN "Orders" AS o ON c.id=o."courierId" WHERE o."inDelivery"=true GROUP BY c.login;
+Этот код работает, немного изменил, но всё равно работает всё верно и без проблем. Я не совсем понимаю, что нужно изменить((( скрин прикреплю
